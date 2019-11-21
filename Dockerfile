@@ -25,7 +25,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         hdf5-tools \
         libhdf5-serial-dev \
         python3-pip \
-#        python3-notebook \
         python3-setuptools
 
 RUN  apt-get clean && \
@@ -33,13 +32,7 @@ RUN  apt-get clean && \
 
 RUN pip3 install -U pip -v
 
-# https://stackoverflow.com/questions/26228136/pip-build-option-to-use-multicore
 RUN pip3 --no-cache-dir install -U -v \
-#        numpy \
-#	scipy \
-#	scikit-learn \
-#	matplotlib \
-#	pandas \
 	jupyter \
         grpcio \
         absl-py \
@@ -58,13 +51,9 @@ RUN pip3 --no-cache-dir install -U -v \
         keras-preprocessing \
         wrapt google-pasta
 
-# install official tensorflow
 RUN pip3 --no-cache-dir install --pre -v --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 tensorflow-gpu==1.14.0+nv19.10
-        # tensorflow-gpu==1.13.1+nv19.3
 
-# install official torch
 RUN curl -L https://nvidia.box.com/shared/static/phqe92v26cbhqjohwtvxorrwnmrnfx1o.whl > /tmp/torch-1.3.0-cp36-cp36m-linux_aarch64.whl && pip3 --no-cache-dir -v install /tmp/torch-1.3.0-cp36-cp36m-linux_aarch64.whl && rm  /tmp/torch-1.3.0-cp36-cp36m-linux_aarch64.whl
-#RUN pip3 --no-cache-dir -v install /tmp/torch-1.3.0-cp36-cp36m-linux_aarch64.whl
 
 EXPOSE 8888 6006
 
