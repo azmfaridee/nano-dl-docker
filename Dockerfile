@@ -53,7 +53,9 @@ RUN pip3 --no-cache-dir install -U -v \
 
 RUN pip3 --no-cache-dir install --pre -v --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 tensorflow-gpu==1.14.0+nv19.10
 
-RUN curl -L https://nvidia.box.com/shared/static/phqe92v26cbhqjohwtvxorrwnmrnfx1o.whl > /tmp/torch-1.3.0-cp36-cp36m-linux_aarch64.whl && pip3 --no-cache-dir -v install /tmp/torch-1.3.0-cp36-cp36m-linux_aarch64.whl && rm  /tmp/torch-1.3.0-cp36-cp36m-linux_aarch64.whl
+RUN curl -L https://nvidia.box.com/shared/static/phqe92v26cbhqjohwtvxorrwnmrnfx1o.whl > /tmp/torch-1.3.0-cp36-cp36m-linux_aarch64.whl && \
+	pip3 --no-cache-dir -v install /tmp/torch-1.3.0-cp36-cp36m-linux_aarch64.whl && \
+	rm  /tmp/torch-1.3.0-cp36-cp36m-linux_aarch64.whl
 
 EXPOSE 8888 6006
 
