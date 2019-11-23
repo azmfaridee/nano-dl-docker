@@ -1,6 +1,6 @@
 FROM nvcr.io/nvidia/l4t-base:r32.2.1
 
-MAINTAINER ABU ZAHER MD FARIDEE <zaher14@gmail.com>
+LABEL maintainer="ABU ZAHER MD FARIDEE <zaher14@gmail.com>"
 
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends \
