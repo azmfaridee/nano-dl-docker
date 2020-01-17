@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/l4t-base:r32.2.1
+FROM nvcr.io/nvidia/l4t-base:r32.3.1
 
 LABEL maintainer="ABU ZAHER MD FARIDEE <zaher14@gmail.com>"
 
@@ -25,7 +25,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         hdf5-tools \
         libhdf5-serial-dev \
         python3-pip \
-        python3-setuptools
+        python3-setuptools \
+	libopenblas-base
 
 RUN  apt-get clean && \
         rm -rf /var/lib/apt/lists/*
@@ -50,14 +51,17 @@ RUN pip3 --no-cache-dir install -U -v \
         keras-applications \
         keras-preprocessing \
         wrapt \
-	google-pasta
+	google-pasta \
+	Cython \
+	numpy
+
 
 RUN pip3 --no-cache-dir install --pre -v --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 \
-	tensorflow-gpu==1.14.0+nv19.10
-
-RUN curl -L https://nvidia.box.com/shared/static/phqe92v26cbhqjohwtvxorrwnmrnfx1o.whl > /tmp/torch-1.3.0-cp36-cp36m-linux_aarch64.whl && \
-	pip3 --no-cache-dir -v install /tmp/torch-1.3.0-cp36-cp36m-linux_aarch64.whl && \
-	rm  /tmp/torch-1.3.0-cp36-cp36m-linux_aarch64.whl
+	tensorflow-gpu==2.0.0+nv19.11
+	
+RUN curl -L https://nvidia.box.com/shared/static/ncgzus5o23uck9i5oth2n8n06k340l6k.whl > /tmp/torch-1.4.0-cp36-cp36m-linux_aarch64.whl && \
+	pip3 --no-cache-dir -v install /tmp/torch-1.4.0-cp36-cp36m-linux_aarch64.whl && \
+	rm  /tmp/torch-1.4.0-cp36-cp36m-linux_aarch64.whl
 
 EXPOSE 8888 6006
 
